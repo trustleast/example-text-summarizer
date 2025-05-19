@@ -10,9 +10,8 @@ export const SummarizeForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event.currentTarget.textarea.value);
     setProcessing(true);
-    const response = fetch("http://localhost:8079/api/chat", {
+    const response = fetch("https://lex.trustleast.com/api/chat", {
       method: "POST",
       credentials: "include",
       headers: {
