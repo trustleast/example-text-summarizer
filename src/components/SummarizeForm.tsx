@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "./Button";
 import { GenAITextFormatter } from "./GenAITextFormatter";
-import { Spinner } from "./Spinner";
 
 export const SummarizeForm = () => {
   const [processing, setProcessing] = useState(false);
