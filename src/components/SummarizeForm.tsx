@@ -11,7 +11,7 @@ export const SummarizeForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setProcessing(true);
-    const response = fetch("https://lex.trustleast.com/api/chat", {
+    const response = fetch("https://api.peerwave.ai/api/chat", {
       method: "POST",
       credentials: "include",
       headers: {
