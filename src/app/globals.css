@@ -201,6 +201,10 @@ textarea {
   color: var(--secondary-color);
 }
 
+.text.red {
+  color: red;
+}
+
 .undownloaded {
   opacity: 0.6;
 }

@@ -2,7 +2,7 @@ export type Props = {
   size?: "small" | "large";
   gap?: "medium";
   center?: boolean;
-  color?: "brand" | "secondary";
+  color?: "brand" | "secondary" | "red";
 } & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLParagraphElement>,
   HTMLParagraphElement

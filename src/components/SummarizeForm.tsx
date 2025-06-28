@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { Button } from "./Button";
 import { GenAITextFormatter } from "./GenAITextFormatter";
+import { TextContent } from "./TextContent";
 
 export const SummarizeForm = () => {
   const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState<string>("");
   const [result, setResult] = useState<string | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +20,7 @@ export const SummarizeForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama3.2:3b",
+        model: "cheapest",
         messages: [
           {
             role: "user",
@@ -30,12 +32,16 @@ export const SummarizeForm = () => {
     response
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          response.text().then((text) => {
+            setError("The text was unable to be summarized: " + text);
+          });
+          return;
         }
 
         return response.json();
       })
       .then((data) => {
+        setError("");
         setResult(data.message.content);
       })
       .finally(() => {
@@ -46,21 +52,33 @@ export const SummarizeForm = () => {
   return (
     <>
       {result === null && (
-        <form onSubmit={handleSubmit}>
-          <textarea
-            className={
-              processing
-                ? "text-area vertical-resize gap-medium disabled"
-                : "text-area vertical-resize gap-medium"
-            }
-            placeholder="To be or not to be..."
-            name="textarea"
-          ></textarea>
+        <>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className={
+                processing
+                  ? "text-area vertical-resize gap-medium disabled"
+                  : "text-area vertical-resize gap-medium"
+              }
+              placeholder="To be or not to be..."
+              name="textarea"
+            ></textarea>
 
-          <Button processing={processing} type="submit">
-            Summarize
-          </Button>
-        </form>
+            <Button processing={processing} type="submit">
+              Summarize
+            </Button>
+          </form>
+          {error !== "" && (
+            <TextContent
+              size="small"
+              color="red"
+              center
+              style={{ marginTop: "1rem" }}
+            >
+              {error}
+            </TextContent>
+          )}
+        </>
       )}
       {result !== null && (
         <>
