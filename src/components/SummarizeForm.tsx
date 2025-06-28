@@ -85,7 +85,9 @@ export const SummarizeForm = () => {
           <div className="gap-medium">
             <GenAITextFormatter content={result} />
           </div>
-          <Button onClick={() => setResult(null)}>Clear</Button>
+          <Button onClick={() => setResult(null)}>
+            Summarize something else
+          </Button>
         </>
       )}
     </>
