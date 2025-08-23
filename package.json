@@ -1,6 +1,6 @@
 {
-  "name": "react-typescript-starter",
-  "description": "Minimalist React 18 starter template with TypeScript ⚛",
+  "name": "text-summarizer",
+  "description": "Example application using Peerwave's API to summarize text",
   "version": "1.0.0",
   "main": "src/index.tsx",
   "repository": "https://github.com/GR34SE/react-typescript-starter.git",
@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "webpack-cli serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",
-    "postbuild": "cd dist && zip -FSr ../bundle.zip *",
     "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx,js,jsx}' --fix"
   },
